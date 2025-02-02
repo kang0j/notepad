@@ -1,14 +1,37 @@
 <html>
     <head>
-        <title>Notepad</title>
+        <title>큰 글씨 메모장</title>
         <link href="assets/main.css" type="text/css" rel="stylesheet">
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-J1N5SVXRE3"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-J1N5SVXRE3');
+        </script>
     </head>
-
 <body>
-
     <header class="space">
     <form>
-        <textarea name='m' class="normal" wrap="virtual"></textarea>
+        <textarea id="note" name='note' class="normal" wrap="virtual"></textarea>
     </form>
+    </header>
+
+    <script>
+        // Load the note from localStorage when the page loads
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const note = localStorage.getItem('note');
+            if (note) {
+                document.getElementById('note').value = note;
+            }
+        });
+
+        // Save the note to localStorage whenever it changes
+        document.getElementById('note').addEventListener('input', (event) => {
+            localStorage.setItem('note', event.target.value);
+        });
+    </script>
 </body> 
 </html>
